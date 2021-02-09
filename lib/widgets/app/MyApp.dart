@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/widgets/pages/AllTodosPage.dart';
+import 'package:todolist/widgets/pages/OneTodoPage.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -10,7 +11,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AllTodosPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => AllTodosPage(),
+        '/oneTodo': (context) => OneTodoPage()
+      },
     );
   }
 }

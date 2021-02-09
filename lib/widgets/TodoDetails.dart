@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/models/Todo.dart';
+import 'package:todolist/widgets/pages/OneTodoPage.dart';
 
 class TodoDetails extends StatefulWidget {
 
@@ -14,9 +15,7 @@ class TodoDetails extends StatefulWidget {
 
 class _TodoDetails extends State<TodoDetails>{
 
-  _modifyTodo() {
 
-  }
 
   _deleteTodo() {
     widget.delete(widget.todo);
@@ -33,7 +32,14 @@ class _TodoDetails extends State<TodoDetails>{
         RaisedButton(
             color: Colors.orange,
             textColor: Colors.white,
-            onPressed: (!widget.todo.done) ? _modifyTodo : null,
+            onPressed: (!widget.todo.done) ? () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OneTodoPage(todo: widget.todo)
+                  )
+              );
+            }: null,
             child: Text("Modifier")
         ),
         RaisedButton(
