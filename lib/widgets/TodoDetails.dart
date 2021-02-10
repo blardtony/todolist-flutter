@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/models/Todo.dart';
+import 'package:todolist/widgets/pages/AllTodosPage.dart';
 import 'package:todolist/widgets/pages/OneTodoPage.dart';
 
 class TodoDetails extends StatefulWidget {
@@ -18,7 +19,35 @@ class _TodoDetails extends State<TodoDetails>{
 
 
   _deleteTodo() {
-    widget.delete(widget.todo);
+
+    final snackBar = SnackBar(
+      content: Row(
+          children: [
+            Text('Êtes-vous sur ?'),
+            RaisedButton(
+                color: Colors.red,
+                textColor: Colors.white,
+                onPressed: () => {
+                  widget.delete(widget.todo),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                  builder: (context) => AllTodosPage()
+                  )
+                )
+
+                },
+                child: Text("Supprimer")
+            )
+          ],
+      ),
+      action: SnackBarAction(
+        label: 'Annuler',
+        onPressed: () {
+        },
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
   @override
